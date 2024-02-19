@@ -25,11 +25,11 @@
                             <div class="card mb-3">
                                 <div class="row g-0">
                                   <div class="col-md-4">
-                                    <img src="img/cover_mpc.jpg" class="card-img rounded-start" alt="Image album">
+                                    <img src="" class="card-img rounded-start" alt="">
                                   </div>
                                   <div class="col-md-8">
                                     <div class="card-body">
-                                      <h5 class="card-title">MPC</h5>
+                                      <h5 class="card-title">MPC</h5>   
                                       <p class="card-text">Luvresval</p>
                                       <p class="card-text album"><small class="text-body-secondary">MPC</small></p>
                                     </div>
@@ -39,14 +39,14 @@
                         </template>
                     </div>
                     <!--Mes artiste favoris-->
-                    <div class="bg-danger p-2 my-2 rounded">
+                    <div class="bg-danger p-2 my-2 rounded text-center">
                         <h2 class="text-white">Mes artistes favoris</h2>
                             <div id="trackList2" class="card-group text-center">
                                 <template id="mesArtistesFavoris">
                                     <div class="card">
                                         <img src="" class="card-img-top" alt="">
                                         <div class="card-body">
-                                          <h5 class="card-title">Luvresval</h5>
+                                          <h5 class="card-title"></h5>
                                         </div>
                                       </div>
                                 </template>
@@ -55,15 +55,35 @@
                 </section>
                 
             <!--Musique page-->
-                <section class="col-6 text-center">
+                <section class="col-6">
                     <!--Mes musiques-->
-                    <div>
-                        <h2>Mes musiques</h2>
+                    <div id="Musiques" class="bg-danger p-2 rounded text-center">
+                        <h2 class="fs-2 text-white">Mes musiques</h2>
+                        <template id="mesMusiques">
+                            <div class="card">
+                                <img src="" class="card-img-top" alt="">
+                                <div class="card-body">
+                                  <h5 class="card-title"></h5>
+                                </div>
+                              </div>
+                        </template>
                     </div>
                     <!--Ecouter musique-->
-                    <div>
-                        <div>
-                            <img src="" alt="">
+                    <div class="bg-black rounded my-2 text-white">
+                        <div class="row">
+                            <div class="col-8">
+                                <img src="" alt="">
+                                <div>Nom de la chanson</div>
+                                <div>Artiste</div>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex">
+                                    <img src="" alt="Bouton musique précendente">
+                                    <img src="" alt="Bouton pause">
+                                    <img src="" alt="Bouton musique suivante">
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </section>

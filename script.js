@@ -30,18 +30,34 @@ fetch('data.json') // requête vers le fichier JSON
             const clone = template.content.cloneNode(true);
             // remplir le clone
             clone.querySelector('.card-title').textContent = data[i].artists[0].name;
-            clone.querySelector('.card-img-top').src = data[i].artists[0].images[2].url
+            clone.querySelector('.card-img-top').src = data[i].artists[0].images[2].url;
             clone.querySelector('.card-img-top').alt = data[i].artists[0].name;
     
             // ajouter le clone au DOM dans le conteneur
             document.getElementById('trackList2').appendChild(clone);
         }
-        
     }
+
+// Fonction pour mes musiques 
+function mesMusiques(data){
+    let template = document.getElementById('mesArtistesFavoris');
+    for (let i = 0; i < 0; i++) {
+        // faire un clone du template
+        const clone = template.content.cloneNode(true);
+        // remplir le clone
+        clone.querySelector('.card-title').textContent = data[i].name;
+        clone.querySelector('.card-img-top').src = data[i].album.images[0].url;
+        clone.querySelector('.card-img-top').alt = data[i].artists[0].name;
+
+        // ajouter le clone au DOM dans le conteneur
+        document.getElementById('Musiques').appendChild(clone);
+    }
+}
+        
 
 //Appel des fonctions
     mesTitresFavoris(data);
     mesArtistesFavoris(data);
-
+    mesMusiques(data);
 });
 
