@@ -7,52 +7,55 @@
         <link rel="stylesheet" href="style.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-        <script src="script.js"></script>
     </head>
 
     <body>
         <!--Homepage-->
-            <div class="row mx-1 bg-success ">
+            <div class="row m-2 ">
                 <section class="col">
                     <!--Info profil-->
                     <div class="text-center">
                         <img src="img/photo-profil-spotify.png" alt="Image de la photo de profil Spotify" class="photo-profil-spotify">
-                        <h1 class="fs-1">Fabien</h1>
+                        <h1 class="fs-1 text-black">Fabien</h1>
                     </div>
                     <!--Mes titres favoris-->
-                    <div class="bg-danger p-2 my-2 rounded">
+                    <div id="trackList" class="bg-danger p-2 my-2 rounded">
                         <h2 class="text-center text-white">Mes titres favoris</h2>
-                    </div>
-                    <!--Mes artiste favoris-->
-                    <div class="bg-danger p-2 my-2 rounded">
-                        <h2 class="text-center text-white">Mes artistes favoris</h2>
-                        <div>
-                            <div class="card-group">
-                                <div class="card">
-                                  <img src="img/luvresval_pp.jpg" class="card-img-top" alt="...">
-                                  <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
+                        <template id="mesTitresFavoris">
+                            <div class="card mb-3">
+                                <div class="row g-0">
+                                  <div class="col-md-4">
+                                    <img src="img/cover_mpc.jpg" class="card-img rounded-start" alt="Image album">
                                   </div>
-                                </div>
-                                <div class="card">
-                                  <img src="img/nepal_pp.jpg" class="card-img-top" alt="...">
-                                  <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                  </div>
-                                </div>
-                                <div class="card">
-                                  <img src="img/kikesa_pp.jpg" class="card-img-top" alt="...">
-                                  <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
+                                  <div class="col-md-8">
+                                    <div class="card-body">
+                                      <h5 class="card-title">MPC</h5>
+                                      <p class="card-text">Luvresval</p>
+                                      <p class="card-text album"><small class="text-body-secondary">MPC</small></p>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                        </div>
+                        </template>
+                    </div>
+                    <!--Mes artiste favoris-->
+                    <div class="bg-danger p-2 my-2 rounded">
+                        <h2 class="text-white">Mes artistes favoris</h2>
+                            <div id="trackList2" class="card-group text-center">
+                                <template id="mesArtistesFavoris">
+                                    <div class="card">
+                                        <img src="" class="card-img-top" alt="">
+                                        <div class="card-body">
+                                          <h5 class="card-title">Luvresval</h5>
+                                        </div>
+                                      </div>
+                                </template>
+                            </div>
                     </div>
                 </section>
                 
             <!--Musique page-->
-                <section class="col-6 text-center bg-danger">
+                <section class="col-6 text-center">
                     <!--Mes musiques-->
                     <div>
                         <h2>Mes musiques</h2>
@@ -70,5 +73,7 @@
                     <h2>Mes genres les plus écoutées</h2>
                 </section>
             </div>
+
+            <script src="script.js"></script>
     </body>
 </html>
