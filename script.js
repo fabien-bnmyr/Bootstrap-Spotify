@@ -53,11 +53,44 @@ function mesMusiques(data){
         document.getElementById('Musiques').appendChild(clone);
     }
 }
-        
 
 //Appel des fonctions
     mesTitresFavoris(data);
     mesArtistesFavoris(data);
     mesMusiques(data);
+
 });
+
+Chart.defaults.color = '#FFFFFF';
+const ctx = document.getElementById('genre');
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1
+      }]
+    }
+  });
+
+  Chart.defaults.color = '#FFFFFF';
+  const ctx2 = document.getElementById('artist');
+  new Chart(ctx2, {
+    type: 'bar',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1,
+        backgroundColor: '#FFFFFF',
+        
+
+      }]
+    },
+  });
+
+
 
