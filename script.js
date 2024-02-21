@@ -40,8 +40,8 @@ fetch('data.json') // requête vers le fichier JSON
 
 // Fonction pour mes musiques 
 function mesMusiques(data){
-    let template = document.getElementById('mesArtistesFavoris');
-    for (let i = 0; i < 0; i++) {
+    let template = document.getElementById('mesMusiques');
+    for (let i = 0; i < 6; i++) {
         // faire un clone du template
         const clone = template.content.cloneNode(true);
         // remplir le clone

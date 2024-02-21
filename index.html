@@ -59,16 +59,18 @@
             <!--Musique page-->
                 <section class="col-6">
                     <!--Mes musiques-->
-                    <div id="Musiques" class="bg-danger p-2 rounded text-center">
+                    <div class="bg-danger p-2 rounded text-center">
                         <h2 class="fs-2 text-white">Mes musiques</h2>
-                        <template id="mesMusiques">
-                            <div class="card">
-                                <img src="" class="card-img-top" alt="">
-                                <div class="card-body">
-                                  <h5 class="card-title"></h5>
-                                </div>
-                              </div>
-                        </template>
+                            <div id="Musiques" class="d-flex">
+                                <template id="mesMusiques">
+                                    <div class="card m-1">
+                                        <img src="" class="card-img-top" alt="">
+                                        <div class="card-body">
+                                        <h5 class="card-title"></h5>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
                     </div>
                     <!--Ecouter musique-->
                     <div class="bg-black rounded my-2 text-white">
@@ -80,7 +82,7 @@
                                     <div class="nomArtiste text-white-50"></div>
                                 </div>
                             </div>
-                            <div id="musiquePlayer" class="d-flextext-white fs-1 me-4">
+                            <div id="musiquePlayer" class="d-flex text-white fs-1 me-4">
                                 <span id="musiquePrecedente" class="bi bi-skip-start me-1"></span>
                                 <span class="bi bi-pause-circle text-danger"></span>
                                 <span id="musiqueSuivante" class="bi bi-skip-end mx-1"></span>
