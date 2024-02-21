@@ -54,13 +54,34 @@ function mesMusiques(data){
     }
 }
 
+// Fonction pour prendre un nombre aléatoire
+function nombreAleatoire(min, max){
+  return Math.round(Math.random() * (max - min) + min)
+}
+
+// Fonction pour changer de musique
+function changerMusique(data){
+  let musiqueActuelle = document.getElementById('infoMusique');
+  const i = nombreAleatoire(0, data.length);
+  musiqueActuelle.querySelector('.nomChanson').textContent = data[i].name;
+  musiqueActuelle.querySelector('.nomArtiste').textContent = data[i].artists[0].name;
+  musiqueActuelle.querySelector('.cover').src = data[i].album.images[2].url;
+  musiqueActuelle.querySelector('.cover').alt = data[i].artists[0].name;
+}
+
 //Appel des fonctions
     mesTitresFavoris(data);
     mesArtistesFavoris(data);
     mesMusiques(data);
+    changerMusique(data);
+    document.querySelector('#musiqueSuivante').addEventListener('click', function() {changerMusique(data)});
+    document.querySelector('#musiquePrecedente').addEventListener('click', function() {changerMusique(data)});
 
 });
 
+
+
+//Graphique
 Chart.defaults.color = '#FFFFFF';
 const ctx = document.getElementById('genre');
   new Chart(ctx, {

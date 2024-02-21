@@ -7,7 +7,6 @@
         <link rel="stylesheet" href="style.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     </head>
@@ -73,20 +72,19 @@
                     </div>
                     <!--Ecouter musique-->
                     <div class="bg-black rounded my-2 text-white">
-                        <div class="row">
-                            <div class="col-9 d-flex">
-                                <img class="rounded-start-2 me-2" src="https://i.scdn.co/image/ab67616d000048513facc107a036404627fd4e86" alt="" style="width: 64px; height: 64px;"> <!-- Assurez-vous que l'image a une taille fixe pour la cohérence -->
-                                <div class="d-flex flex-column">
-                                    <div class="fs-5">Nom de la chanson</div>
-                                    <div class="fs-5">Artiste</div>
+                        <div class="d-flex justify-content-between">
+                            <div id="infoMusique" class="d-flex">
+                                <img class="cover rounded-start-2 me-2" src="" alt=""> 
+                                <div class="d-flex flex-column fs-5">
+                                    <div class="nomChanson"></div>
+                                    <div class="nomArtiste text-white-50"></div>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div id="musiquePlayer" class="d-flex text-white">
-                                    <img src="" alt="">
-                                </div>
+                            <div id="musiquePlayer" class="d-flextext-white fs-1 me-4">
+                                <span id="musiquePrecedente" class="bi bi-skip-start me-1"></span>
+                                <span class="bi bi-pause-circle text-danger"></span>
+                                <span id="musiqueSuivante" class="bi bi-skip-end mx-1"></span>
                             </div>
-
                         </div>
                     </div>
                 </section>
