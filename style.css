@@ -13,3 +13,7 @@
 #navbar{
     width: 100vw;
 }
+
+.cursor:hover{
+    cursor: pointer;
+}
