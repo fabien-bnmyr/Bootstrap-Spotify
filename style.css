@@ -3,13 +3,13 @@
 
 *{
     font-family: "EB Garamond", serif;
+    user-select: none;
 }
-
-
 
 .photo-profil-spotify{
-    width: 8vw;
+    width: 170px;
 }
 
-
-
+#navbar{
+    width: 100vw;
+}

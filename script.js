@@ -59,7 +59,7 @@ function nombreAleatoire(min, max){
   return Math.round(Math.random() * (max - min) + min)
 }
 
-// Fonction pour changer de musique
+//Fonction pour changer de musique
 function changerMusique(data){
   let musiqueActuelle = document.getElementById('infoMusique');
   const i = nombreAleatoire(0, data.length);
@@ -67,6 +67,23 @@ function changerMusique(data){
   musiqueActuelle.querySelector('.nomArtiste').textContent = data[i].artists[0].name;
   musiqueActuelle.querySelector('.cover').src = data[i].album.images[2].url;
   musiqueActuelle.querySelector('.cover').alt = data[i].artists[0].name;
+  jouerMusique(data);
+}
+
+//Fonction pour lancer la musique
+function jouerMusique(data){
+  let play = document.getElementById('musiquePlayer')
+  play.querySelector('#play').classList.add("d-none")
+  play.querySelector('#pause').classList.remove("d-none")
+
+}
+
+//Fonction pour mettre pause
+function pauseMusique(data){
+  let play = document.getElementById('musiquePlayer')
+  play.querySelector('#play').classList.remove("d-none")
+  play.querySelector('#pause').classList.add("d-none")
+
 }
 
 //Appel des fonctions
@@ -76,10 +93,9 @@ function changerMusique(data){
     changerMusique(data);
     document.querySelector('#musiqueSuivante').addEventListener('click', function() {changerMusique(data)});
     document.querySelector('#musiquePrecedente').addEventListener('click', function() {changerMusique(data)});
-
+    document.querySelector('#play').addEventListener('click', function() {jouerMusique(data)});
+    document.querySelector('#pause').addEventListener('click', function() {pauseMusique(data)});
 });
-
-
 
 //Graphique
 Chart.defaults.color = '#FFFFFF';
@@ -112,6 +128,75 @@ const ctx = document.getElementById('genre');
       }]
     },
   });
+
+
+// Gestion responsive 
+window.addEventListener('resize', function(){
+  const width = window.innerWidth;
+  //Section
+  let sectionHome = document.getElementById('home')
+  let sectionMusique = document.getElementById('musique')
+  let sectionGraphique = document.getElementById('graphique')
+  //Nav
+  let nav = document.getElementById('navbar')
+  let buttonHome = document.getElementById('homeButton')
+  let buttonMusique = document.getElementById('musicButton')
+  let buttonGraph = document.getElementById('graphButton')
+
+  if (width < 1076){
+    //Disparition des sections musique et graphique
+    sectionMusique.classList.add('d-none')
+    sectionGraphique.classList.add('d-none')
+    //Apparition de la navbar
+    nav.classList.remove('d-none')
+    //Style
+    buttonHome.classList.add('text-danger')
+  }
+
+  if (width > 1076){
+    sectionMusique.classList.remove('d-none')
+    sectionGraphique.classList.remove('d-none')
+    sectionHome.classList.remove('d-none')
+    nav.classList.add('d-none')
+
+  }
+
+  function changerSectionMusique(){
+    sectionHome.classList.add('d-none')
+    sectionGraphique.classList.add('d-none')
+    sectionMusique.classList.remove('d-none')
+    buttonMusique.classList.add('text-danger')
+    buttonHome.classList.remove('text-danger')
+    buttonGraph.classList.remove('text-danger')
+    document.getElementById("musique").classList.remove('col-6')
+    document.getElementById("musique").classList.add('col')
+
+  }
+  buttonMusique.addEventListener('click', function() {changerSectionMusique()});
+
+  function changerSectionHome(){
+    sectionHome.classList.remove('d-none')
+    sectionGraphique.classList.add('d-none')
+    sectionMusique.classList.add('d-none')
+    buttonMusique.classList.remove('text-danger')
+    buttonHome.classList.add('text-danger')
+    buttonGraph.classList.remove('text-danger')
+  }
+  buttonHome.addEventListener('click', function() {changerSectionHome()});
+
+  function changerSectionGraph(){
+    sectionHome.classList.add('d-none')
+    sectionGraphique.classList.remove('d-none')
+    sectionMusique.classList.add('d-none')
+    buttonMusique.classList.remove('text-danger')
+    buttonHome.classList.remove('text-danger')
+    buttonGraph.classList.add('text-danger')
+  }
+  buttonGraph.addEventListener('click', function() {changerSectionGraph()});
+  
+})
+
+
 
 
 

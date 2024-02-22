@@ -12,9 +12,16 @@
     </head>
 
     <body>
+        <!--Navbar-->
+        <div id="navbar" class="d-none position-fixed bottom-0 start-50 translate-middle-x d-flex justify-content-around bg-black text-white z-3 fs-1" style="width: 100vw;">
+            <span id="graphButton" class="bi bi-bar-chart-line-fill"></span>
+            <span id="homeButton" class="bi bi-house-door-fill"></span>
+            <span id="musicButton" class="bi bi-music-note-beamed"></span>
+        </div>
+
         <!--Homepage-->
             <div class="row m-2 ">
-                <section class="col">
+                <section id="home" class="col">
                     <!--Info profil-->
                     <div class="text-center">
                         <img src="img/photo-profil-spotify.png" alt="Image de la photo de profil Spotify" class="photo-profil-spotify">
@@ -41,7 +48,7 @@
                         </template>
                     </div>
                     <!--Mes artiste favoris-->
-                    <div class="bg-danger p-2 my-2 rounded text-center">
+                    <div class="bg-danger p-2 my-2 rounded text-center mb-5">
                         <h2 class="text-white">Mes artistes favoris</h2>
                             <div id="trackList2" class="card-group text-center">
                                 <template id="mesArtistesFavoris">
@@ -57,7 +64,7 @@
                 </section>
                 
             <!--Musique page-->
-                <section class="col-6">
+                <section id="musique" class="col-6">
                     <!--Mes musiques-->
                     <div class="bg-danger p-2 rounded text-center">
                         <h2 class="fs-2 text-white">Mes musiques</h2>
@@ -73,18 +80,19 @@
                             </div>
                     </div>
                     <!--Ecouter musique-->
-                    <div class="bg-black rounded my-2 text-white">
+                    <div class="bg-black rounded my-2">
                         <div class="d-flex justify-content-between">
                             <div id="infoMusique" class="d-flex">
                                 <img class="cover rounded-start-2 me-2" src="" alt=""> 
                                 <div class="d-flex flex-column fs-5">
-                                    <div class="nomChanson"></div>
-                                    <div class="nomArtiste text-white-50"></div>
+                                    <div class="nomChanson text-white"></div>
+                                    <div class="nomArtiste text-danger"></div>
                                 </div>
                             </div>
-                            <div id="musiquePlayer" class="d-flex text-white fs-1 me-4">
+                            <div id="musiquePlayer" class="d-flex text-white fs-1 me-4 my-auto">
                                 <span id="musiquePrecedente" class="bi bi-skip-start me-1"></span>
-                                <span class="bi bi-pause-circle text-danger"></span>
+                                <span id="pause" class="bi bi-pause-circle text-danger"></span>
+                                <span id="play" class="bi bi-play-circle text-danger"></span>
                                 <span id="musiqueSuivante" class="bi bi-skip-end mx-1"></span>
                             </div>
                         </div>
@@ -92,7 +100,7 @@
                 </section>
 
             <!--StatPage-->
-                <section class="col text-center text-white">
+                <section id="graphique" class="col text-center text-white">
                     <!--Mes genres les plus écouté-->
                     <div class="bg-danger rounded py-2">
                         <h2>Mes genres les plus écouté</h2>
