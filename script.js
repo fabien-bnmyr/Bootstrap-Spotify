@@ -41,7 +41,7 @@ fetch('data.json') // requête vers le fichier JSON
 // Fonction pour mes musiques 
 function mesMusiques(data){
     let template = document.getElementById('mesMusiques');
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 20; i++) {
         // faire un clone du template
         const clone = template.content.cloneNode(true);
         // remplir le clone
@@ -75,6 +75,8 @@ function jouerMusique(data){
   let play = document.getElementById('musiquePlayer')
   play.querySelector('#play').classList.add("d-none")
   play.querySelector('#pause').classList.remove("d-none")
+
+  
 
 }
 
@@ -123,7 +125,6 @@ const ctx = document.getElementById('genre');
         data: [12, 19, 3, 5, 2, 3],
         borderWidth: 1,
         backgroundColor: '#FFFFFF',
-        
 
       }]
     },

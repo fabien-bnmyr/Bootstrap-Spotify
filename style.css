@@ -17,3 +17,11 @@
 .cursor:hover{
     cursor: pointer;
 }
+
+#musique #Musiques img{
+    width: 138px;
+}
+
+#musique #Musiques .card{
+    max-width: 140px;
+}
