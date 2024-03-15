@@ -67,9 +67,7 @@ function changerMusique(data){
   musiqueActuelle.querySelector('.nomArtiste').textContent = data[i].artists[0].name;
   musiqueActuelle.querySelector('.cover').src = data[i].album.images[2].url;
   musiqueActuelle.querySelector('.cover').alt = data[i].artists[0].name;
-  musiqueActuelle.querySelector('.audio').src = data[i].artists[0].tracks[0].preview_url;
-  console.log(musiqueActuelle.querySelector('.audio').src = data[i].artists[0]);
-
+  musiqueActuelle.querySelector('.audio').src = data[i].preview_url;
   jouerMusique(data);
 }
 
@@ -80,7 +78,6 @@ function jouerMusique(data){
   play.querySelector('#play').classList.add("d-none")
   play.querySelector('#pause').classList.remove("d-none")
   musiqueActuelle.querySelector('.audio').play()
-
 }
 
 //Fonction pour mettre pause
@@ -91,19 +88,49 @@ function pauseMusique(data){
   play.querySelector('#pause').classList.add("d-none")
   musiqueActuelle.querySelector('.audio').pause()
 
+}
 
+// Construction des données des graphique
+function graphiqueData(data) {
+  const genresMap = new Map()
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].artists[0].genres.length > 0){
+      const genre = data[i].artists[0].genres[0]
+      // On vérifie si le genre est déjà présent
+      if (genresMap.has(genre)) {
+        // Si oui, on incrémente
+        genresMap.set(genre, genresMap.get(genre) + 1)
+      } else {
+        // Sinon, on créer le genre
+        genresMap.set(genre, 1)
+      }
+    }
+  }
+  
+  const tab_genre = []
+  const tab_genre_data = []
+  n = 7
+  for ([key, value] of genresMap) {
+    tab_genre.push(key);
+    tab_genre_data.push(value)
+    n -= 1
+    if (n==0){
+      break
+    }
+  }
+  return {labels: tab_genre, data: tab_genre_data}
 }
 
 //Appel des fonctions
     mesTitresFavoris(data);
     mesArtistesFavoris(data);
     mesMusiques(data);
-    changerMusique(data);
+    const graphData = graphiqueData(data);
     document.querySelector('#musiqueSuivante').addEventListener('click', function() {changerMusique(data)});
     document.querySelector('#musiquePrecedente').addEventListener('click', function() {changerMusique(data)});
     document.querySelector('#play').addEventListener('click', function() {jouerMusique(data)});
     document.querySelector('#pause').addEventListener('click', function() {pauseMusique(data)});
-});
+
 
 //Graphique
 Chart.defaults.color = '#FFFFFF';
@@ -111,17 +138,17 @@ const ctx = document.getElementById('genre');
   new Chart(ctx, {
     type: 'doughnut',
     data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      labels: graphData.labels,
       datasets: [{
         label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
+        data: graphData.data,
         borderWidth: 1
       }]
     }
   });
 
-  Chart.defaults.color = '#FFFFFF';
-  const ctx2 = document.getElementById('artist');
+Chart.defaults.color = '#FFFFFF';
+const ctx2 = document.getElementById('artist');
   new Chart(ctx2, {
     type: 'bar',
     data: {
@@ -131,10 +158,11 @@ const ctx = document.getElementById('genre');
         data: [12, 19, 3, 5, 2, 3],
         borderWidth: 1,
         backgroundColor: '#FFFFFF',
-
       }]
     },
   });
+});
+
 
 
 // Gestion responsive 
