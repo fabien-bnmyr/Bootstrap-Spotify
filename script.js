@@ -67,24 +67,30 @@ function changerMusique(data){
   musiqueActuelle.querySelector('.nomArtiste').textContent = data[i].artists[0].name;
   musiqueActuelle.querySelector('.cover').src = data[i].album.images[2].url;
   musiqueActuelle.querySelector('.cover').alt = data[i].artists[0].name;
+  musiqueActuelle.querySelector('.audio').src = data[i].artists[0].tracks[0].preview_url;
+  console.log(musiqueActuelle.querySelector('.audio').src = data[i].artists[0]);
+
   jouerMusique(data);
 }
 
 //Fonction pour lancer la musique
 function jouerMusique(data){
+  let musiqueActuelle = document.getElementById('infoMusique');
   let play = document.getElementById('musiquePlayer')
   play.querySelector('#play').classList.add("d-none")
   play.querySelector('#pause').classList.remove("d-none")
-
-  
+  musiqueActuelle.querySelector('.audio').play()
 
 }
 
 //Fonction pour mettre pause
 function pauseMusique(data){
+  let musiqueActuelle = document.getElementById('infoMusique');
   let play = document.getElementById('musiquePlayer')
   play.querySelector('#play').classList.remove("d-none")
   play.querySelector('#pause').classList.add("d-none")
+  musiqueActuelle.querySelector('.audio').pause()
+
 
 }
 
