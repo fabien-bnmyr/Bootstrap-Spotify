@@ -41,7 +41,7 @@ fetch('data.json') // requête vers le fichier JSON
 // Fonction pour mes musiques 
 function mesMusiques(data){
     let template = document.getElementById('mesMusiques');
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 24; i++) {
         // faire un clone du template
         const clone = template.content.cloneNode(true);
         // remplir le clone
@@ -91,7 +91,7 @@ function pauseMusique(data){
 }
 
 // Construction des données des graphique
-function graphiqueData(data) {
+function graphiqueDataGenres(data) {
   const genresMap = new Map()
   for (let i = 0; i < data.length; i++) {
     if (data[i].artists[0].genres.length > 0){
@@ -106,7 +106,6 @@ function graphiqueData(data) {
       }
     }
   }
-  
   const tab_genre = []
   const tab_genre_data = []
   n = 7
@@ -120,12 +119,34 @@ function graphiqueData(data) {
   }
   return {labels: tab_genre, data: tab_genre_data}
 }
+  
+function graphiqueDataArtists(data) {
+  const ArtistsMap = new Map()
+  for (let i = 0; i < data.length; i++){
+    const artist = data[i].artists[0].name
+    if (ArtistsMap.has(artist)){
+      ArtistsMap.set(artist, ArtistsMap.get(artist) + 1)
+    } else {
+      ArtistsMap.set(artist, 1)
+    }
+  }
+  console.log(ArtistsMap)
+  const tabArtist = []
+  const tabDataArtist = []
+  for ([key, value] in ArtistsMap){
+    tabArtist.push(key)
+    tabDataArtist.push(value)
+  }
+  return {labels: tabArtist, data:tabDataArtist}
+}
+    
 
 //Appel des fonctions
     mesTitresFavoris(data);
     mesArtistesFavoris(data);
     mesMusiques(data);
-    const graphData = graphiqueData(data);
+    const graphDataGenre = graphiqueDataGenres(data);
+    const graphDataArtist = graphiqueDataArtists(data)
     document.querySelector('#musiqueSuivante').addEventListener('click', function() {changerMusique(data)});
     document.querySelector('#musiquePrecedente').addEventListener('click', function() {changerMusique(data)});
     document.querySelector('#play').addEventListener('click', function() {jouerMusique(data)});
@@ -138,10 +159,10 @@ const ctx = document.getElementById('genre');
   new Chart(ctx, {
     type: 'doughnut',
     data: {
-      labels: graphData.labels,
+      labels: graphDataGenre.labels,
       datasets: [{
         label: '# of Votes',
-        data: graphData.data,
+        data: graphDataGenre.data,
         borderWidth: 1
       }]
     }
