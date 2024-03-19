@@ -130,13 +130,16 @@ function graphiqueDataArtists(data) {
       ArtistsMap.set(artist, 1)
     }
   }
-  console.log(ArtistsMap)
+  const sorted = [...ArtistsMap].sort((a, b) => b[1] - a[1] );;
   const tabArtist = []
   const tabDataArtist = []
-  for ([key, value] in ArtistsMap){
-    tabArtist.push(key)
-    tabDataArtist.push(value)
-  }
+  sorted.forEach((values, keys) =>{
+    tabArtist.push(keys)
+    tabDataArtist.push(values)
+  })
+  
+  console.log(tabArtist)
+  console.log(tabDataArtist)
   return {labels: tabArtist, data:tabDataArtist}
 }
     
