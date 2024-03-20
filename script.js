@@ -108,16 +108,13 @@ function graphiqueDataGenres(data) {
   }
   const tab_genre = []
   const tab_genre_data = []
-  n = 7
-  for ([key, value] of genresMap) {
-    tab_genre.push(key);
-    tab_genre_data.push(value)
-    n -= 1
-    if (n==0){
-      break
-    }
-  }
-  return {labels: tab_genre, data: tab_genre_data}
+  genresMap.forEach((values, keys) => {
+    tab_genre.push(keys)
+    tab_genre_data.push(values)
+  })
+  const tabGenre = tab_genre.slice(0,5)
+  const tabGenreData = tab_genre_data.slice(0,5)
+  return {labels: tabGenre, data: tabGenreData}
 }
   
 function graphiqueDataArtists(data) {
@@ -133,23 +130,23 @@ function graphiqueDataArtists(data) {
   const sorted = [...ArtistsMap].sort((a, b) => b[1] - a[1] );;
   const tabArtist = []
   const tabDataArtist = []
-  sorted.forEach((values, keys) =>{
-    tabArtist.push(keys)
-    tabDataArtist.push(values)
+  sorted.forEach(value =>{
+    tabArtist.push(value[0])
+    tabDataArtist.push(value[1])
   })
-  
-  console.log(tabArtist)
-  console.log(tabDataArtist)
-  return {labels: tabArtist, data:tabDataArtist}
+  const tab_artist = tabArtist.slice(0, 10)
+  const tab_data_artist = tabDataArtist.slice(0,10)
+  return {labels: tab_artist, data: tab_data_artist}
+
 }
     
 
 //Appel des fonctions
+    const graphDataGenre = graphiqueDataGenres(data);
+    const graphDataArtists = graphiqueDataArtists(data);
     mesTitresFavoris(data);
     mesArtistesFavoris(data);
     mesMusiques(data);
-    const graphDataGenre = graphiqueDataGenres(data);
-    const graphDataArtist = graphiqueDataArtists(data)
     document.querySelector('#musiqueSuivante').addEventListener('click', function() {changerMusique(data)});
     document.querySelector('#musiquePrecedente').addEventListener('click', function() {changerMusique(data)});
     document.querySelector('#play').addEventListener('click', function() {jouerMusique(data)});
@@ -176,10 +173,10 @@ const ctx2 = document.getElementById('artist');
   new Chart(ctx2, {
     type: 'bar',
     data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      labels: graphDataArtists.labels,
       datasets: [{
         label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
+        data: graphDataArtists.data,
         borderWidth: 1,
         backgroundColor: '#FFFFFF',
       }]
@@ -210,6 +207,10 @@ window.addEventListener('resize', function(){
     nav.classList.remove('d-none')
     //Style
     buttonHome.classList.add('text-danger')
+    document.getElementById("graphique").style.paddingBottom = "50px"
+    document.getElementById("musique").style.paddingBottom = "50px"
+
+
   }
 
   if (width > 1076){
@@ -217,6 +218,8 @@ window.addEventListener('resize', function(){
     sectionGraphique.classList.remove('d-none')
     sectionHome.classList.remove('d-none')
     nav.classList.add('d-none')
+    document.getElementById("graphique").style.paddingBottom = "0px"
+    document.getElementById("musique").style.paddingBottom = "0px"
 
   }
 
