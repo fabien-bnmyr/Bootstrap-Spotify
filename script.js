@@ -78,6 +78,7 @@ function jouerMusique(data){
   play.querySelector('#play').classList.add("d-none")
   play.querySelector('#pause').classList.remove("d-none")
   musiqueActuelle.querySelector('.audio').play()
+  musiqueActuelle.querySelector('.audio').volume = 0.1;
 }
 
 //Fonction pour mettre pause
@@ -130,9 +131,9 @@ function graphiqueDataArtists(data) {
   const sorted = [...ArtistsMap].sort((a, b) => b[1] - a[1] );;
   const tabArtist = []
   const tabDataArtist = []
-  sorted.forEach(value =>{
-    tabArtist.push(value[0])
-    tabDataArtist.push(value[1])
+  ArtistsMap.forEach((values, keys) => {
+    tabArtist.push(keys)
+    tabDataArtist.push(values)
   })
   const tab_artist = tabArtist.slice(0, 10)
   const tab_data_artist = tabDataArtist.slice(0,10)
@@ -187,6 +188,41 @@ const ctx2 = document.getElementById('artist');
 
 
 // Gestion responsive 
+window.addEventListener('load', function() {
+  const width = window.innerWidth;
+  //Section
+  let sectionHome = document.getElementById('home')
+  let sectionMusique = document.getElementById('musique')
+  let sectionGraphique = document.getElementById('graphique')
+  //Nav
+  let nav = document.getElementById('navbar')
+  let buttonHome = document.getElementById('homeButton')
+  let buttonMusique = document.getElementById('musicButton')
+  let buttonGraph = document.getElementById('graphButton')
+  console.log(width)
+  if (width < 1076){
+    //Disparition des sections musique et graphique
+    sectionMusique.classList.add('d-none')
+    sectionGraphique.classList.add('d-none')
+    //Apparition de la navbar
+    nav.classList.remove('d-none')
+    //Style
+    buttonHome.classList.add('text-danger')
+    document.getElementById("graphique").style.paddingBottom = "50px"
+    document.getElementById("musique").style.paddingBottom = "50px"
+  }
+
+  if (width > 1076){
+    sectionMusique.classList.remove('d-none')
+    sectionGraphique.classList.remove('d-none')
+    sectionHome.classList.remove('d-none')
+    nav.classList.add('d-none')
+    document.getElementById("graphique").style.paddingBottom = "0px"
+    document.getElementById("musique").style.paddingBottom = "0px"
+  }
+});
+
+
 window.addEventListener('resize', function(){
   const width = window.innerWidth;
   //Section
@@ -209,8 +245,6 @@ window.addEventListener('resize', function(){
     buttonHome.classList.add('text-danger')
     document.getElementById("graphique").style.paddingBottom = "50px"
     document.getElementById("musique").style.paddingBottom = "50px"
-
-
   }
 
   if (width > 1076){
@@ -220,7 +254,6 @@ window.addEventListener('resize', function(){
     nav.classList.add('d-none')
     document.getElementById("graphique").style.paddingBottom = "0px"
     document.getElementById("musique").style.paddingBottom = "0px"
-
   }
 
   function changerSectionMusique(){
